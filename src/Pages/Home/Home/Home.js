@@ -1,5 +1,6 @@
 import React from "react";
 import Features from "../Features/Features";
+import MakeAppoinment from "../MakeAppointment/MakeAppoinment";
 import Service from "../Service/Service";
 import bg from "./../../../assets/images/bg.png";
 import chair from "./../../../assets/images/chair.png";
@@ -36,6 +37,7 @@ const Home = () => {
       </div>
       <Features></Features>
       <Service></Service>
+      <MakeAppoinment></MakeAppoinment>
     </>
   );
 };
