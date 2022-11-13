@@ -1,15 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import quote from "../../../assets/icons/quote.svg";
 
 const PatientsReview = () => {
   return (
     <section className="py-6 sm:py-12 dark:bg-gray-800 dark:text-gray-100">
       <div className="container p-6 mx-auto space-y-8">
-        <div className="space-y-2">
-          <h2 className="font-bold text-primary">Testimonial</h2>
-          <p className="font-serif text-lg dark:text-gray-400">
-            What Our Patients Says
-          </p>
+        <div className="space-y-2 flex justify-between items-center">
+          <div>
+            <h2 className="font-bold text-primary">Testimonial</h2>
+            <p className="font-serif text-lg dark:text-gray-400">
+              What Our Patients Says
+            </p>
+          </div>
+          <div>
+            <img className="w-48" src={quote} alt="" />
+          </div>
         </div>
         <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
           <article className="flex flex-col dark:bg-gray-900 shadow">
@@ -33,12 +39,8 @@ const PatientsReview = () => {
                   />
                 </div>
                 <div>
-                    <div>
-                        Name
-                    </div>
-                    <div>
-                        address
-                    </div>
+                  <div>Name</div>
+                  <div>address</div>
                 </div>
               </div>
             </div>
@@ -64,12 +66,8 @@ const PatientsReview = () => {
                   />
                 </div>
                 <div>
-                    <div>
-                        Name
-                    </div>
-                    <div>
-                        address
-                    </div>
+                  <div>Name</div>
+                  <div>address</div>
                 </div>
               </div>
             </div>
@@ -95,12 +93,8 @@ const PatientsReview = () => {
                   />
                 </div>
                 <div>
-                    <div>
-                        Name
-                    </div>
-                    <div>
-                        address
-                    </div>
+                  <div>Name</div>
+                  <div>address</div>
                 </div>
               </div>
             </div>
@@ -126,12 +120,8 @@ const PatientsReview = () => {
                   />
                 </div>
                 <div>
-                    <div>
-                        Name
-                    </div>
-                    <div>
-                        address
-                    </div>
+                  <div>Name</div>
+                  <div>address</div>
                 </div>
               </div>
             </div>

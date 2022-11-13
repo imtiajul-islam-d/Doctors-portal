@@ -1,5 +1,6 @@
 import React from "react";
 import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton";
+import ContactUs from "../ContactUs/ContactUs";
 import Features from "../Features/Features";
 import MakeAppoinment from "../MakeAppointment/MakeAppoinment";
 import PatientsReview from "../PatientsReview/PatientsReview";
@@ -39,6 +40,7 @@ const Home = () => {
       <Service></Service>
       <MakeAppoinment></MakeAppoinment>
       <PatientsReview></PatientsReview>
+      <ContactUs></ContactUs>
     </>
   );
 };

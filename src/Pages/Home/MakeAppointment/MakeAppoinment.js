@@ -1,13 +1,13 @@
 import React from "react";
 import doctor from './../../../assets/images/doctor.png'
-import appoinment from './../../../assets/images/appointment.png'
+import appointment from './../../../assets/images/appointment.png'
 
 const MakeAppoinment = () => {
   return (
     <section
         style={
             {
-                background: `url(${appoinment})`
+                background: `url(${appointment})`
             }
         }
         className= 'my-4 lg:mt-20'
