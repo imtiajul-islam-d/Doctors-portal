@@ -33,25 +33,6 @@ const Features = () => {
             {
                 featuresData.map(features => <FeatureCard key={features.id} features={features}></FeatureCard>)
             }
-            
-            {/* <div className='bg-black rounded-md flex lg:flex-row flex-col p-4 items-center justify-center'>
-                <div className='p-7 text-white text-7xl'>
-                    <span><HiLocationMarker></HiLocationMarker></span>
-                </div>
-                <div className='text-start w-full'>
-                    <div className='text-white text-xl'>Visit our location</div>
-                    <div className='text-white'>Brooklyn, NY 10036, United States</div>
-                </div>
-            </div>
-            <div className='bg-gradient-to-r from-primary to-secondary rounded-md flex lg:flex-row flex-col p-4 items-center justify-center'>
-                <div className='p-7 text-white text-7xl'>
-                    <span><HiPhoneIncoming></HiPhoneIncoming></span>
-                </div>
-                <div className='text-start w-full'>
-                    <div className='text-white text-xl'>Contact us now</div>
-                    <div className='text-white'>+000000990-0000000</div>
-                </div>
-            </div> */}
         </div>
     );
 };

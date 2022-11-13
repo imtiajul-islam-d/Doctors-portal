@@ -1,6 +1,8 @@
 import React from "react";
+import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton";
 import Features from "../Features/Features";
 import MakeAppoinment from "../MakeAppointment/MakeAppoinment";
+import PatientsReview from "../PatientsReview/PatientsReview";
 import Service from "../Service/Service";
 import bg from "./../../../assets/images/bg.png";
 import chair from "./../../../assets/images/chair.png";
@@ -27,9 +29,7 @@ const Home = () => {
                   assumenda excepturi exercitationem quasi. In deleniti eaque
                   aut repudiandae et a id nisi.
                 </p>
-                <button className="btn bg-gradient-to-r from-primary to-secondary text-white btn-primary ">
-                  Get Started
-                </button>
+                <PrimaryButton>Get started</PrimaryButton>
               </div>
             </div>
           </div>
@@ -38,6 +38,7 @@ const Home = () => {
       <Features></Features>
       <Service></Service>
       <MakeAppoinment></MakeAppoinment>
+      <PatientsReview></PatientsReview>
     </>
   );
 };
