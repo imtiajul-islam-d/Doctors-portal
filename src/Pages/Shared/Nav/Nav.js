@@ -1,31 +1,53 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const Nav = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [toggle, setToggle] = useState(false);
-    const menuItems = (
-      <React.Fragment>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
 
+  // signOut user start
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {})
+      .then((error) => {
+        alert(error.message);
+      });
+  };
+  // signOut user start
+
+  const menuItems = (
+    <React.Fragment>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+
+      <li>
+        <Link>About</Link>
+      </li>
+      <li>
+        <Link to="/appointment">Appointment</Link>
+      </li>
+      <li>
+        <Link>Reviews</Link>
+      </li>
+      <li>
+        <Link>Contact us</Link>
+      </li>
+      {user?.uid ? (
+        <>
         <li>
-          <Link>About</Link>
+          <Link onClick={handleSignOut}>Sign Out</Link>
         </li>
         <li>
-          <Link to='/appointment'>Appointment</Link>
+          <Link to='/dashboard'>Dashboard</Link>
         </li>
-        <li>
-          <Link>Reviews</Link>
-        </li>
-        <li>
-          <Link>Contact us</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-      </React.Fragment>
-    );
+        </>
+      ) : (
+        ""
+      )}
+    </React.Fragment>
+  );
   return (
     <div className="navbar container mx-auto h-20">
       <div className="navbar-start">
@@ -60,9 +82,27 @@ const Nav = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
-      <div className="navbar-end">
-      <img alt="" className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-violet-400 ring-offset-gray-800" src="https://source.unsplash.com/40x40/?portrait?1" />
-      </div>
+      {user?.uid ? (
+        <div className="navbar-end">
+          {user?.photoURL ? (
+            <img
+              alt=""
+              className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-violet-400 ring-offset-gray-800"
+              src={user?.photoURL}
+            />
+          ) : (
+            <img
+              alt=""
+              className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-violet-400 ring-offset-gray-800"
+              src="https://source.unsplash.com/40x40/?portrait?1"
+            />
+          )}
+        </div>
+      ) : (
+        <li className="navbar-end">
+          <Link  to="/login">Login</Link>
+        </li>
+      )}
     </div>
   );
 };
