@@ -36,16 +36,33 @@ const Signup = () => {
         const user = result.user;
         reset();
         userUpdate(info)
-        .then(() => {}).then(() => {})
-        logOut();
-        toast.success("Registration Successfully completed, Please Login!");
-        navigate("/login");
+        .then(() => {
+          saveUser(info.displayName, email)
+          logOut();
+          navigate("/login");
+          toast.success("Registration Successfully completed, Please Login!");
+        }).then(() => {})
       })
       .catch((error) => {
         setSignUpError(error.message);
         setLoadingState(false);
       });
   };
+  // 
+  const saveUser = (name, email) => {
+    const user = {name, email};
+    fetch('http://localhost:5000/users', {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  }
   // create an user with email and password end
 
   return (
@@ -82,7 +99,7 @@ const Signup = () => {
                 required: "Email is required",
                 pattern: {
                   value:
-                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  /^([a-z0-9_\-\.]+)@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/,
                   message: "Please enter a valid email",
                 },
               })}

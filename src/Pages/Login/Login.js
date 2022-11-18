@@ -1,10 +1,16 @@
+import { el } from "date-fns/locale";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
-  const { signInEmail, loadingState, setLoadingState } = useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState("");
+  const [token] = useToken(userEmail);
+  const { signInEmail, loadingState, setLoadingState, logOut } =
+    useContext(AuthContext);
   // setting error at login action start
   const [loginError, setLoginError] = useState("");
   // setting error at login action end
@@ -12,7 +18,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
   // console.log(from)
 
   const {
@@ -22,6 +28,10 @@ const Login = () => {
     reset,
   } = useForm();
   // sign in user with email and password start
+  //
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const handleLogin = (data) => {
     setLoginError("");
@@ -29,24 +39,22 @@ const Login = () => {
     const password = data.password;
     signInEmail(email, password)
       .then((result) => {
-        console.log(from)
+        setUserEmail(email);
         reset();
-        navigate(from, {replace: true});
       })
       .catch((err) => {
-        setLoginError(err.message)
-        setLoadingState(false)
+        setLoginError(err.message);
+        setLoadingState(false);
       });
   };
-  // sing in user with email and password end
 
   return (
     <section className="flex justify-center items-center min-h-[90vh] px-3 lg:px-0">
-      {
-        loadingState && <div>
+      {loadingState && (
+        <div>
           <div className="border border-dashed border-black w-16 h-9 rounded-full animate-spin"></div>
         </div>
-      }
+      )}
       {!loadingState && (
         <div className="shadow-md p-5">
           <h2 className="text-center text-3xl mb-3">Login</h2>

@@ -36,12 +36,12 @@ const Nav = () => {
       </li>
       {user?.uid ? (
         <>
-        <li>
-          <Link onClick={handleSignOut}>Sign Out</Link>
-        </li>
-        <li>
-          <Link to='/dashboard'>Dashboard</Link>
-        </li>
+          <li>
+            <Link onClick={handleSignOut}>Sign Out</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
         </>
       ) : (
         ""
@@ -82,6 +82,22 @@ const Nav = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
+      <label htmlFor="dashboard-drawer" tabIndex={1} className="btn btn-ghost lg:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M4 6h16M4 12h8m-8 6h16"
+          />
+        </svg>
+      </label>
       {user?.uid ? (
         <div className="navbar-end">
           {user?.photoURL ? (
@@ -100,7 +116,7 @@ const Nav = () => {
         </div>
       ) : (
         <li className="navbar-end">
-          <Link  to="/login">Login</Link>
+          <Link to="/login">Login</Link>
         </li>
       )}
     </div>
