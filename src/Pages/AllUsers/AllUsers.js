@@ -33,8 +33,9 @@ const handleMakeAdmin = id => {
             toast.success("Admin added")
             refetch()
         }
-    })
-}
+      })
+    }
+    console.log(users.users)
   return (
     <div>
       <div className="overflow-x-auto">
@@ -51,7 +52,7 @@ const handleMakeAdmin = id => {
           </thead>
           <tbody>
             {/* <!-- row 1 --> */}
-            {users.map((user, idx) => {
+            {users?.users?.map((user, idx) => {
               return (
                 <tr key={user._id}>
                   <th>{idx + 1}</th>
@@ -59,7 +60,7 @@ const handleMakeAdmin = id => {
                   <td>{user?.email}</td>
                   <td>
                     {
-                        user.role !== 'admin' ? 
+                        user?.role !== 'admin' ? 
                         <Link className="btn btn-primary" onClick={() => handleMakeAdmin(user._id)}>Make Admin</Link>
                         :
                         <Link className="btn bg-red-700 text-white">Remove admin</Link>

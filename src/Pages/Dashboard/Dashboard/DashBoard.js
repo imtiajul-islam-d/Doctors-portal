@@ -11,7 +11,6 @@ const DashBoard = () => {
   const [selected, setSelected] = useState(new Date());
   const date = format(selected, "PP");
   const { user } = useContext(AuthContext);
-  console.log(user);
   const {
     data: myBooking = [],
     isLoading,
@@ -19,18 +18,21 @@ const DashBoard = () => {
   } = useQuery({
     queryKey: ["myBooking", date, user],
     queryFn: async () => {
-      const res = await fetch(
-        `http://localhost:5000/booking/${user.email}?date=${date}`, {
+      try {
+        const res = await fetch(
+          `http://localhost:5000/booking/${user.email}?date=${date}`,
+          {
             headers: {
-                authorization : `bearer ${localStorage.getItem('accessToken')}`
-            }
-        }
-      );
-      const data = await res.json();
-      return data;
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
+        const data = await res.json();
+        return data;
+      } catch {}
     },
   });
-  if (isLoading) {
+  if(isLoading) {
     return <Loading></Loading>;
   }
   return (
@@ -59,8 +61,8 @@ const DashBoard = () => {
                 </thead>
                 {/* {myBooking.data.map((booking) => { */}
                 <tbody>
-                  {myBooking.data.length === 0 && <h2>No data found</h2>}
-                  {myBooking.data.map((item, idx) => {
+                  {myBooking?.data?.length === 0 && <h2>No data found</h2>}
+                  {myBooking?.data?.map((item, idx) => {
                     return (
                       <tr key={idx}>
                         <th>{idx + 1}</th>
