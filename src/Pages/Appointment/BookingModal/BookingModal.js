@@ -6,7 +6,7 @@ import { AuthContext } from "../../../context/AuthProvider";
 const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
   const { user } = useContext(AuthContext);
   // console.log(user);
-  const { name, slots } = treatment;
+  const { name, slots, price } = treatment;
   const date = format(selectedDate, "PP");
   const handleBooking = (event) => {
     event.preventDefault();
@@ -22,6 +22,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
       email,
       phone,
       treatment: name,
+      price
     };
     // send data to the server and show a toast
 
@@ -101,6 +102,11 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
               placeholder="Phone"
               className="input w-full border outline outline-1 outline-gray-300 my-3"
             />
+            <br />
+            <input 
+            disabled
+            className="input w-full border outline outline-1 outline-gray-300 my-3"
+            type="text" value={`$${price}`} />
             <br />
             <input
               type="submit"

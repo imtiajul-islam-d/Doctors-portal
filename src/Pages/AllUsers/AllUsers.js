@@ -39,7 +39,6 @@ const handleMakeAdmin = id => {
         }
       })
     }
-    console.log(users.users)
   return (
     <div>
       <div className="overflow-x-auto">

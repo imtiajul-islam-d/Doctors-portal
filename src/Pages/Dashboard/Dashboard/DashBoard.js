@@ -5,7 +5,9 @@ import { DayPicker } from "react-day-picker";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../../context/AuthProvider";
 import Loading from "../../Shared/Loading/Loading";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import BookingModal from "../../Appointment/BookingModal/BookingModal";
+import { itMatchesOne } from "daisyui/src/lib/postcss-prefixer/utils";
 
 const DashBoard = () => {
   const [selected, setSelected] = useState(new Date());
@@ -32,7 +34,7 @@ const DashBoard = () => {
       } catch {}
     },
   });
-  if(isLoading) {
+  if (isLoading) {
     return <Loading></Loading>;
   }
   return (
@@ -57,6 +59,8 @@ const DashBoard = () => {
                     <th>Name</th>
                     <th>Service</th>
                     <th>Time</th>
+                    <th>Price</th>
+                    <th>Payment Status</th>
                   </tr>
                 </thead>
                 {/* {myBooking.data.map((booking) => { */}
@@ -69,6 +73,15 @@ const DashBoard = () => {
                         <td>{item.patient}</td>
                         <td>{item.treatment}</td>
                         <td>{item.slot}</td>
+                        <td>{`$${item.price}`}</td>
+                        <td>
+                          {item.price && !item.paid && (
+                            <Link to={`/dashboard/payment/${item._id}`}>
+                              <button className="btn btn-sm">Pay</button>
+                            </Link>
+                          )}
+                          {item.price && item.paid && <span className="p-3 bg-green-700 text-white">paid</span>}
+                        </td>
                       </tr>
                     );
                   })}
